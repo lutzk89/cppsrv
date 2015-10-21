@@ -1,17 +1,10 @@
 template<class ntype>
-class dataSet {
-        public:
-        virtual int getLength();
-        virtual ntype getValue(int position);
-}
-
-template<class ntype>
 class nnDataSet: public dataSet {
         private:
-                ntype* values;
-                int length;
+            ntype* values;
+            int length;
         public:
-                nnDataSet(string fname) {
+            nnDataSet(string fname) {
 			ifstream ifile;
 			vector<ntype> tvec;
 			int j=0;
