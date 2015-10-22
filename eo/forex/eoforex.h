@@ -27,21 +27,10 @@ And of course write the corresponding destructor!
 #define _eoforex_h
 
 
-/**
- *  Always write a comment in this format before class definition
- *  if you want the class to be documented by Doxygen
+#include<neuralnet.h>
 
- * Note that you MUST derive your structure from EO<fitT>
- * but you MAY use some other already prepared class in the hierarchy
- * like eoVector for instance, if you handle a vector of something....
-
- * If you create a structure from scratch,
- * the only thing you need to provide are
- *        a default constructor
- *        IO routines printOn and readFrom
- *
- * Note that operator<< and operator>> are defined at EO level
- * using these routines
+/*
+ * OBSOLET
  */
 class forexRule {
 public:
@@ -55,7 +44,6 @@ public:
 		this->from1 = nfrom1;
 		this->from2 = nfrom2;
 		this->to = nto;
-		//copy(nweights[0],nweights[4],this->weights);
 		for (int i=0;i<6;i++) {
 			this->weights[i] = nweights[i];
 		}
@@ -63,15 +51,9 @@ public:
 	}
 	int calcRule(vector<float>& data) {
 		if ( this->to >= data.size() || this->from1 >= data.size() || this->from2 >= data.size() ) {
-			//cout << "Invalid rule address, break " << this->to << " " << this->from1 << " " << this->from2 << " " << data.size() << endl;
 			return 1;
 		}
 		data[this->to] = tanh( this->weights[0] + this->weights[1] * data[this->from1] + this->weights[2] * data[this->from2] + this->weights[3] * data[this->from1] * data[this->from1] + this->weights[4] * data[this->from2] * data[this->from2] + this->weights[5] * data[this->from1] * data[this->from2] );
-//		if ( this->to == filelength - 1 )
-//			cout << this->from1 << " " << this->from2 << " " << this->to  << " " << data[this->to] << " " << data[this->from1] << " " << data[this->from2] << endl;
-//		for ( int i=0; i < 6; i++)
-//			cout << this->weights[i] << endl;
-//
 		return 0;
 	}
 };
@@ -79,14 +61,9 @@ public:
 
 template< class FitT>
 class eoforex: public EO<FitT> {
+private:
+	neuralnet* net;
 public:
-	/**
-	 * Class attributes
-	 */
-int flength;
-int nfile;
-int mylength;
-float myfit;
 
 vector<forexRule*> rules;
 
@@ -96,41 +73,7 @@ vector<forexRule*> rules;
    */
   eoforex()
   {
-	  nfile=0;
-	  myfit = 10000.0;
-	  flength=filelength;
-	  mylength=filelength;
-	  /* OBSOLET
-	  nfile=0;
-	  flength=5;
-	  mylength=5;
-	  float temp;
-	  ifstream ifile;
-	  int i,j;
-	  char thisdir[] = 	".";
-	  char pardir[] = "..";
-	  char fullfile[100];
-	  DIR *dpdf;
-	  struct dirent *epdf;
 
-	  dpdf = opendir("./data");
-	  if (dpdf != NULL){
-	     while ( ( epdf = readdir(dpdf) ) ){
-
-	        // std::out << epdf->d_name << std::endl;
-
-	    	 if ( strcmp(epdf->d_name, thisdir) == 0 || strcmp(epdf->d_name, pardir) == 0 ) {
-	    		 continue;
-	    	 }
-	    	 //printf("Filename: %s",epdf->d_name);
-	    	 nfile++;
-	     }
-	  }
-*/
-
-
-    // START Code of default Ctor of an eoforex object
-    // END   Code of default Ctor of an eoforex object
   }
 
   double runNetwork(vector<float>& data) {

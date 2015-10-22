@@ -18,8 +18,10 @@ class dataSet {
 
 template<class ntype>
 class nnDataSet: public dataSet<ntype> {
+		private:
+			static const int filelength;
         public:
-                nnDataSet(string fname);
+                nnDataSet(char* fname);
                 int getLength();
 };
 
