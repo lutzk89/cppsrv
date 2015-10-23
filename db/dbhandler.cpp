@@ -1,4 +1,5 @@
 #include<fstream>
+#include<vector>
 
 const int nnDataSet::filelength = 48;
 
@@ -7,11 +8,14 @@ class nnDataSet: public dataSet {
 private:
 	ntype* values;
 	int length;
+	ntype* input;
+	ntype* output;
+	int outLength;
+	static const int filelength;
 public:
 	nnDataSet(char* fname) {
 		ifstream ifile;
 		vector<ntype> tvec;
-		int j=0;
 		//its redefinition. Just make your own class if you dont like it...
 		ifile.open(fname);
 		ntype temp;
@@ -23,16 +27,34 @@ public:
 				tvec.push_back(temp);
 			}
 		}
+		this->outLength = this->length - this->filelength;
 		this->values = new ntype[this->length];
+		this->input = new ntype[this->filelength];
+		this->output = new ntype[this->outLength];
+		int j=0;
 		for ( vector<ntype>::iterator it = tvec.begin(); it != tvec.end() ; ++it) {
 			this->values[j] = *it;
+			if ( j < this->filelength ) {
+				this->input[j] = *it;
+			} else {
+				this->output[j-this->filelength] = *it;
+			}
 			j++;
 		}
 		ifile.close();
 		ifile.clear();
 	}
+	ntype* getInput() {
+		return this->input;
+	}
+	ntype* getOutput() {
+		return this->output;
+	}
 	int getInputLength() {
 		return this->filelength;
+	}
+	int getOutputLength() {
+		return this->outLength;
 	}
 	int getLength() {
 		return this->length;
@@ -82,7 +104,6 @@ public:
 				//printf("Filename: %s",epdf->d_name);
 			}
 		}
-		this->fbuf = new float[nfile*flength];
 		dpdf = opendir("./data");
 		if (dpdf != NULL){
 			while ( ( epdf = readdir(dpdf) ) ){
@@ -105,6 +126,22 @@ public:
 				newSet = new nnDataSet<ntype>(fullfile);
 				this->dataSets.push_back(newSet);
 			}
+		}
+
+		ntype* getInput(int i) {
+
+		}
+
+		ntype* getOutput(int i) {
+
+		}
+
+		int getInputLength() {
+
+		}
+
+		int getOutputLength() {
+
 		}
 
 		return 0;

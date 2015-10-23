@@ -53,6 +53,10 @@ public:
 	 * Einzelner Datensatz Feedforward, i ist index für provider
 	 */
 	int feedForward(int i) {
+		double* input = provider.getInput(i);
+		double* output = provider->getOutput(i);
+		int inLength = provider.getInputLength();
+		int outLength = provider.getOutputLength();
 		return 0;
 	}
 	/*

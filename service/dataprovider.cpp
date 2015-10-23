@@ -12,4 +12,16 @@ class dirDataProvider: public dataProvider {
 	int read() {
 		return 0;
 	}
+	double* getInput(int i) {
+
+	}
+	double *getOutput(int i) {
+
+	}
+	int getInputLength() {
+
+	}
+	int getOutputLength() {
+
+	}
 };
