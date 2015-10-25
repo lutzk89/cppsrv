@@ -1,0 +1,42 @@
+In file included from forexEA.cpp:55:0:
+eo/forex/eoforex.h: In Instanziierung von »eoforex<FitT>::eoforex(const eoforex<FitT>&) [with FitT = eoScalarFitness<double, std::greater<double> >]«:
+/usr/include/c++/5.2.0/bits/stl_construct.h:75:7:   erfordert durch »void std::_Construct(_T1*, _Args&& ...) [with _T1 = eoforex<eoScalarFitness<double, std::greater<double> > >; _Args = {const eoforex<eoScalarFitness<double, std::greater<double> > >&}]«
+/usr/include/c++/5.2.0/bits/stl_uninitialized.h:75:18:   erfordert durch »static _ForwardIterator std::__uninitialized_copy<_TrivialValueTypes>::__uninit_copy(_InputIterator, _InputIterator, _ForwardIterator) [with _InputIterator = __gnu_cxx::__normal_iterator<const eoforex<eoScalarFitness<double, std::greater<double> > >*, std::vector<eoforex<eoScalarFitness<double, std::greater<double> > >, std::allocator<eoforex<eoScalarFitness<double, std::greater<double> > > > > >; _ForwardIterator = eoforex<eoScalarFitness<double, std::greater<double> > >*; bool _TrivialValueTypes = false]«
+/usr/include/c++/5.2.0/bits/stl_uninitialized.h:126:15:   erfordert durch »_ForwardIterator std::uninitialized_copy(_InputIterator, _InputIterator, _ForwardIterator) [with _InputIterator = __gnu_cxx::__normal_iterator<const eoforex<eoScalarFitness<double, std::greater<double> > >*, std::vector<eoforex<eoScalarFitness<double, std::greater<double> > >, std::allocator<eoforex<eoScalarFitness<double, std::greater<double> > > > > >; _ForwardIterator = eoforex<eoScalarFitness<double, std::greater<double> > >*]«
+/usr/include/c++/5.2.0/bits/stl_uninitialized.h:281:37:   erfordert durch »_ForwardIterator std::__uninitialized_copy_a(_InputIterator, _InputIterator, _ForwardIterator, std::allocator<_Tp>&) [with _InputIterator = __gnu_cxx::__normal_iterator<const eoforex<eoScalarFitness<double, std::greater<double> > >*, std::vector<eoforex<eoScalarFitness<double, std::greater<double> > >, std::allocator<eoforex<eoScalarFitness<double, std::greater<double> > > > > >; _ForwardIterator = eoforex<eoScalarFitness<double, std::greater<double> > >*; _Tp = eoforex<eoScalarFitness<double, std::greater<double> > >]«
+/usr/include/c++/5.2.0/bits/stl_vector.h:322:31:   erfordert durch »std::vector<_Tp, _Alloc>::vector(const std::vector<_Tp, _Alloc>&) [with _Tp = eoforex<eoScalarFitness<double, std::greater<double> > >; _Alloc = std::allocator<eoforex<eoScalarFitness<double, std::greater<double> > > >]«
+eo/src/eoPop.h:65:7:   erfordert durch »T& eoState::takeOwnership(const T&) [with T = eoPop<eoforex<eoScalarFitness<double, std::greater<double> > > >]«
+eo/src/do/make_pop.h:67:54:   erfordert durch »eoPop<EOT>& do_make_pop(eoParser&, eoState&, eoInit<EOT>&) [with EOT = eoforex<eoScalarFitness<double, std::greater<double> > >]«
+forexEA.cpp:99:44:   von hier erfordert
+eo/forex/eoforex.h:60:14: Fehler: keine passende Funktion für Aufruf von »neuralnet::neuralnet(neuralnet* const&)«
+    this->net = new neuralnet(eo.net);
+              ^
+In file included from eo/forex/eoforex.h:30:0,
+                 from forexEA.cpp:55:
+nnet/neuralnet.h:32:2: Anmerkung: candidate: neuralnet::neuralnet(int, int, int)
+  neuralnet(int newNin, int newNout, int newNhi) { }
+  ^
+nnet/neuralnet.h:32:2: Anmerkung:   Kandidat erwartet 3 Argumente, 1 angegeben
+nnet/neuralnet.h:18:7: Anmerkung: candidate: constexpr neuralnet::neuralnet(const neuralnet&)
+ class neuralnet {
+       ^
+nnet/neuralnet.h:18:7: Anmerkung:   keine bekannte Umwandlung für Argument 1 von »neuralnet* const« nach »const neuralnet&«
+In file included from forexEA.cpp:74:0:
+eo/forex/eoforexMutation.h: In Instanziierung von »bool eoforexMutation<GenotypeT>::operator()(GenotypeT&) [with GenotypeT = eoforex<eoScalarFitness<double, std::greater<double> > >]«:
+forexEA.cpp:371:1:   von hier erfordert
+eo/forex/eoforexMutation.h:64:3: Fehler: »class eoforex<eoScalarFitness<double, std::greater<double> > >« has no member named »mutate«
+   _genotype.mutate();
+   ^
+In file included from forexEA.cpp:60:0:
+eo/forex/eoforexInit.h: In Instanziierung von »void eoforexInit<GenotypeT>::operator()(GenotypeT&) [with GenotypeT = eoforex<eoScalarFitness<double, std::greater<double> > >]«:
+forexEA.cpp:371:1:   von hier erfordert
+eo/forex/eoforexInit.h:55:3: Fehler: »class eoforex<eoScalarFitness<double, std::greater<double> > >« has no member named »randomInit«
+   _genotype.randomInit();
+   ^
+In file included from forexEA.cpp:67:0:
+eo/forex/eoforexEvalFunc.h: In Instanziierung von »void eoforexEvalFunc<EOT>::operator()(EOT&) [with EOT = eoforex<eoScalarFitness<double, std::greater<double> > >]«:
+forexEA.cpp:371:1:   von hier erfordert
+eo/forex/eoforexEvalFunc.h:59:3: Fehler: »class eoforexEvalFunc<eoforex<eoScalarFitness<double, std::greater<double> > > >« has no member named »data«
+   this->data.clear();
+   ^
+make: *** [forexEA.o] Fehler 1
