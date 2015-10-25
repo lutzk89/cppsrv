@@ -80,7 +80,7 @@ int dirDbhandler<ntype>::read_dir()
 	char fullfile[100];
 	DIR *dpdf;
 	struct dirent *epdf;
-	dpdf = opendir(dirName);
+	dpdf = opendir(this->dirName);
 	if (dpdf != NULL){
 		while ( ( epdf = readdir(dpdf) ) ){
 
@@ -94,7 +94,7 @@ int dirDbhandler<ntype>::read_dir()
 			//printf("Filename: %s",epdf->d_name);
 		}
 	}
-	dpdf = opendir("./data");
+	dpdf = opendir(this->dirName);
 	if (dpdf != NULL){
 		while ( ( epdf = readdir(dpdf) ) ){
 
@@ -112,6 +112,7 @@ int dirDbhandler<ntype>::read_dir()
 			}
 			strcpy(fullfile,"./data/");
 			strcat(fullfile,epdf->d_name);
+			std::cout << "Opening " << fullfile << std::endl;
 			// insert dataset creation
 			newSet = new nnDataSet<ntype>(fullfile);
 			this->dataSets.push_back(newSet);

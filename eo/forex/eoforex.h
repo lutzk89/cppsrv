@@ -57,9 +57,14 @@ public:
 
   eoforex(const eoforex &eo)
   {
-	  this->net = new neuralnet(eo.net);
+	  this->net = new neuralnet(*(eo.net));
   }
-
+  void mutate() {
+	  this->net->mutate();
+  }
+  void randomInit() {
+	  this->net->randomInit();
+  }
 
 
   virtual ~eoforex()

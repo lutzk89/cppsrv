@@ -60,84 +60,8 @@ public:
 		//cout << "Enter Mutation\n";
 		bool isModified(false);
 		// START code for mutation of the _genotype object
-		int padd = 900;
-		int prem = 200;
-		int pcha = 1000;
-		int rpos;
-		int from1, from2, to;
-		float *nweights;
-		nweights = new float[6];
-		forexRule* newRule;
-		int p;
-		int del;
-		float fcha;
-		float num = 0.0000001;
-		float offs = 0.5; // 0.001 * 1000 * 0.5
-		for ( vector<forexRule*>::iterator it = _genotype.rules.begin(); it != _genotype.rules.end() ; ++it ) {
-			for ( int k = 0; k < 6 ; k++ ) {
-				p = rand()%1000;
-				if ( p < pcha ) {
-					fcha =  distribution(generator);//((float)(rand() % 10000000)) * num - offs;
-					(*it)->weights[k] = (*it)->weights[k] + fcha;
-					isModified = true;
-				}
-			}
-		}
-		p = rand()%1000;
-		while ( p < padd ) {
-			isModified = true;
-			from1 = rand() % _genotype.mylength;
-			from2 = rand() % _genotype.mylength;
-			to = rand() % ( _genotype.mylength + 1 );
-			if ( to >= _genotype.mylength ) {
-				_genotype.mylength++;
-			}
-
-			for ( int i = 0; i < 6; i++ ) {
-				fcha = distribution(generator);//((float)(rand() % 1000)) * num - offs;
-				nweights[i] = fcha;
-			}
-			newRule = new forexRule(from1,from2,to,nweights,mutationcounter);
-			rpos = rand() % _genotype.rules.size();
-			_genotype.rules.insert(_genotype.rules.begin(), newRule);
-			mutationcounter++;
-			p = rand()%1000;
-		}
-
-		p = rand()%1000;
-		while ( p < prem ) {
-			if ( _genotype.rules.size() > 0 ) {
-				isModified = true;
-				del = rand() % _genotype.rules.size();
-				//delete _genotype.rules[del]; // first free the buffer
-				_genotype.rules.erase(_genotype.rules.begin());
-				p = rand()%1000;
-			} else {
-				isModified = true;
-				from1 = rand() % _genotype.mylength;
-				from2 = rand() % _genotype.mylength;
-				to = rand() % ( _genotype.mylength + 1 );
-				if ( to >= _genotype.mylength ) {
-					_genotype.mylength++;
-				}
-				for ( int i = 0; i < 6; i++ ) {
-					fcha = distribution(generator);//((float)(rand() % 10000000)) * num - offs;
-					nweights[i] = fcha;
-				}
-				newRule = new forexRule(from1,from2,to,nweights,mutationcounter);
-				_genotype.rules.insert(_genotype.rules.begin(), newRule);
-				mutationcounter++;
-				p = rand()%1000;
-			}
-		}
-
-		/** Requirement
-		 * if (_genotype has been modified)
-		 *     isModified = true;
-		 * else
-		 *     isModified = false;
-		 */
-		delete[] nweights;
+		isModified = true;
+		_genotype.mutate();
 		//cout << "Leave Mutation\n";
 		return isModified;
 		// END code for mutation of the _genotype object

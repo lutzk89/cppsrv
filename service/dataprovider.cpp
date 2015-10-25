@@ -4,6 +4,7 @@ dirDataProvider::dirDataProvider() {
 	this->dirName = '../forex_work/data'; // TODO aus config holen
 	this->handler = new dirDbhandler<double>(this->dirName);
 	this->handler->read_dir();
+	std::cout << "Creating provider Instance\n";
 }
 static dirDataProvider* dirDataProvider::getInstance() {
 	if ( instanz == 0 ) {

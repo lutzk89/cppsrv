@@ -9,6 +9,9 @@ DIR_EO = eo/release/lib
 DIR_SRC = eo/src
 DIR_SO = eo/src/do
 DIR_FOR = eo/forex
+DIR_NN = nnet
+DIR_DB = db
+DIR_SE = service
 DIR_BOOST = /usr/include/boost/
 
 .SUFFIXES: .cpp
@@ -18,9 +21,9 @@ DIR_BOOST = /usr/include/boost/
 # and have problems with the interpretation of the output (and its colors)
 # then you should use c++ instead (make CXX=c++ will do)
 
-.cpp: ; $(CXX) -I. -I$(DIR_FOR) -I$(DIR_EO) -I$(DIR_SRC) -I$(DIR_SO) -I$(DIR_BOOST) -Wall -g -o $@  -std=gnu++11  $*.cpp $(DIR_EO)/libeoutils.a $(DIR_EO)/libeo.a  -lboost_system
+.cpp: ; $(CXX)  -I. -g -I$(DIR_DB) -I$(DIR_SE) -I$(DIR_NN) -I$(DIR_FOR) -I$(DIR_EO) -I$(DIR_SRC) -I$(DIR_SO) -I$(DIR_BOOST) -Wall -g -o $@  -std=gnu++11  $*.cpp $(DIR_EO)/libeoutils.a $(DIR_EO)/libeo.a  -lboost_system
 
-.cpp.o: ; $(CXX) -I. -I$(DIR_FOR) -I$(DIR_EO) -I$(DIR_SRC) -I$(DIR_SO) -I$(DIR_BOOST) -std=gnu++11 -Wall -g -c $*.cpp -lboost_system 
+.cpp.o: ; $(CXX)  -I. -g -I$(DIR_NN) -I$(DIR_DB) -I$(DIR_SE) -I$(DIR_FOR) -I$(DIR_EO) -I$(DIR_SRC) -I$(DIR_SO) -I$(DIR_BOOST) -std=gnu++11 -Wall -g -c $*.cpp -lboost_system 
 
 ALL = forexEA 
 

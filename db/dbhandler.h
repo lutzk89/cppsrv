@@ -16,7 +16,7 @@ class dataSet {
 public:
 	virtual int getLength();
 	virtual ntype getValue(int position);
-}
+};
 
 template<class ntype>
 class nnDataSet: public dataSet<ntype> {
@@ -28,14 +28,14 @@ private:
 	int outLength;
 	static const int filelength;
 public:
-	nnDataSet(char* fname) { }
-	~nnDataSet() {			}
-	ntype* getInput() {	}
-	ntype* getOutput() {			}
-	int getInputLength() {			}
-	int getOutputLength() {			}
-	int getLength() {			}
-	ntype getValue(int position) {			}
+	nnDataSet(char* fname);
+	~nnDataSet();
+	ntype* getInput();
+	ntype* getOutput();
+	int getInputLength();
+	int getOutputLength();
+	int getLength();
+	ntype getValue(int position);
 
 };
 
@@ -47,13 +47,13 @@ private:
 	char* dirName;
 	vector<nnDataSet<ntype>*> dataSets;
 public:
-	dirDbhandler(char* dirName) {	}
-	int read_dir()	{ }
-	ntype* getInput(int i) { }
-	ntype* getOutput(int i) { }
-	int getInputLength() {	}
-	int getOutputLength() {	}
-	int getNumOfSets() { }
+	dirDbhandler(char* dirName);
+	int read_dir();
+	ntype* getInput(int i);
+	ntype* getOutput(int i);
+	int getInputLength();
+	int getOutputLength();
+	int getNumOfSets();
 };
 
 

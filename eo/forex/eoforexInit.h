@@ -52,28 +52,7 @@ public:
 		 * Initialize Genotype
 		 */
 
-		float* nweights = new float[6];
-		_genotype.mylength = filelength;
-		forexRule* rule;
-
-		int targ = 0;
-
-		for (int t1=0;t1<_genotype.mylength ;t1++) {
-			for ( int k = t1; k < _genotype.mylength  ; k++) {
-				for (int t2=t1;t2<k ;t2++) {
-					if ( t1 == t2 || t1 == k || t2 == k)
-						continue;
-					//cout << targ << endl;
-					for ( int k = 0; k < 6; k++) {
-						nweights[k] = distribution(generator);
-					}
-					rule = new forexRule(t1,t2,k,nweights,mutationcounter);
-					mutationcounter++;
-					_genotype.rules.push_back(rule);
-				}
-			}
-		}
-		delete[] nweights;
+		_genotype.randomInit();
 		// END   Code of random initialization of an eoforex object
 		_genotype.invalidate();	   // IMPORTANT in case the _genotype is old
 	}

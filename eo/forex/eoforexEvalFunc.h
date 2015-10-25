@@ -26,7 +26,7 @@ template <class EOT>
 class eoforexEvalFunc : public eoEvalFunc<EOT>
 {
 private:
-	dataProvider* provider;
+
 public:
 	/// Ctor - no requirement
 	// START eventually add or modify the anyVariable argument
@@ -35,8 +35,7 @@ public:
 	// END eventually add or modify the anyVariable argument
 	{
 		// START Code of Ctor of an eoforexEvalFunc object
-		//Initialize the training buffer
-		this->provider = new dataProvider("../forex_work/data"); // TODO: workdir aus config einlesen
+
 		// END   Code of Ctor of an eoforexEvalFunc object
 	}
 
@@ -57,7 +56,7 @@ public:
 			fit = _eo.runNetwork();
 			_eo.fitness(fit);
 		}
-		this->data.clear();
+
 	}
 
 private:

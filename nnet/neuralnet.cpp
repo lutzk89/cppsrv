@@ -3,6 +3,7 @@ static const double one = 1.0;
 static const double two = 2.0;
 
 neuralnet::neuralnet(int newNin, int newNout, int newNhi) {
+	std::cout << "New Network\n";
 	this->learningRate = 1.0;
 	this->nin = newNin;
 	this->nout = newNout;

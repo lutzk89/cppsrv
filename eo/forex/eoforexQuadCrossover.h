@@ -59,35 +59,7 @@ public:
 	  //cout << "Enter Crossover\n";
       bool oneAtLeastIsModified(false);
     // START code for crossover of _genotype1 and _genotype2 objects
-      int pcross = 200;
-      int p;
-      float fcha1;
-      float fcha2;
-      float v1,v2;
-      for ( vector<forexRule*>::iterator it = _genotype1.rules.begin(); it != _genotype1.rules.end() ; ++it ) {
-    	  for ( vector<forexRule*>::iterator at = _genotype2.rules.begin(); at != _genotype2.rules.end() ; ++at ) {
-    		  if ( (*it)->tstamp == (*at)->tstamp ) {
-    			  p = rand()%1000;
-    			  if ( p < pcross ) {
-    				  for ( int k = 0; k < 6; k++ ) {
-    				      fcha1 =  abs( distribution(generator) );//((float)(rand() % 10000000)) * num - offs;
-    				      fcha2 =  abs( distribution(generator) );//((float)(rand() % 10000000)) * num - offs;
-    				      v1 = (*it)->weights[k];
-    				      v2 = (*at)->weights[k];
-    					  (*it)->weights[k] = (v1*fcha1 + v2*fcha2)/( fcha1 + fcha2);//( (*it)->weights[k] + (*at)->weights[k] ) * 0.5;
-    					  (*at)->weights[k] = (v1*fcha1 + v2*fcha2)/( fcha1 + fcha2);// ( (*it)->weights[k] + (*at)->weights[k] ) * 0.5;
-    				  }
-    				  oneAtLeastIsModified = true;
-    			  }
-    		  }
-    	  }
-      }
-       /** Requirement
-	* if (at least one genotype has been modified) // no way to distinguish
-	*     oneAtLeastIsModified = true;
-	* else
-	*     oneAtLeastIsModified = false;
-	*/
+
     //cout << "Leave Crossover\n";
     return oneAtLeastIsModified;
     // END code for crossover of _genotype1 and _genotype2 objects

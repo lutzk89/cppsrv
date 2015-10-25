@@ -1,4 +1,7 @@
+#ifndef DATAPROVIDER_H_
+#define DATAPROVIDER_H_
 
+#include<dbhandler.h>
 #include<string>
 class dataProvider {
 	public:
@@ -8,17 +11,19 @@ class dataProvider {
 
 class dirDataProvider: public dataProvider {
 	private:
-		dirDbhandler* handler;
+		dirDbhandler<double>* handler;
 		char* dirName;
 		static dirDataProvider* instanz;
-		dirDataProvider() { };
+		dirDataProvider();
 	public:
-		static dirDataProvider* getInstance() { }
-		int read() { }
-		double* getInput(int i) { }
-		double* getOutput(int i) { }
-		int getInputLength() { }
-		int getOutputLength() { }
-		int getNumOfSets() { }
+		static dirDataProvider* getInstance();
+		int read();
+		double* getInput(int i);
+		double* getOutput(int i);
+		int getInputLength();
+		int getOutputLength();
+		int getNumOfSets();
 
 };
+
+#endif

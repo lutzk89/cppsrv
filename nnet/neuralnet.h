@@ -29,27 +29,24 @@ private:
 	int nhi;
 	dirDataProvider* provider;
 public:
-	neuralnet(int newNin, int newNout, int newNhi)
-	~neuralnet()
-	double backprop(double s)
-	int initialize() { }
-	int feedforward() { }
-	int randomInit() {	}
-	int mutate() {	}
-	int getNumOfLayers() {	}
-	int getSizeOfW() {	}
-	int getSizeOfB() {	}
-	int getSizeOfZ() {	}
-	int getBaddress(int node,int layer) { }
-	int getZaddress(int node,int layer,int dataset) { }
-	int getWaddress(int node1,int node2,int layer) {	}
-	double feedForward(int dset) { }
-	double propFunc(double x) {	}
-	double propFuncPrime(double x) { }
-	int gradientStep(int dset) {
-	}
+	neuralnet(int newNin, int newNout, int newNhi);
+	~neuralnet();
+	double backprop(double s);
+	int initialize();
+	int feedforward();
+	int randomInit();
+	int mutate();
+	int getNumOfLayers();
+	int getSizeOfW();
+	int getSizeOfB();
+	int getSizeOfZ();
+	int getBaddress(int node,int layer);
+	int getZaddress(int node,int layer,int dataset);
+	int getWaddress(int node1,int node2,int layer);
+	double feedForward(int dset);
+	double propFunc(double x);
+	double propFuncPrime(double x);
+	int gradientStep(int dset);
 };
-
-
 
 #endif /* NNET_NEURALNET_H_ */
