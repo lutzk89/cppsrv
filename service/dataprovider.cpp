@@ -1,27 +1,31 @@
 #include<dbhandler.h>
-class dirDataProvider: public dataProvider {
-	private:
-	dirDbhandler* handler;
-	char* dirName;
-	public:
-	dirDataProvider(char* dirName) {
-		this->dirName = dirName;
-		this->handler = new dirDbhandler<double>(this->dirname);
-		this->handler->read_dir();
+dirDataProvider* dirDataProvider::instanz = 0;
+dirDataProvider::dirDataProvider() {
+	this->dirName = '../forex_work/data'; // TODO aus config holen
+	this->handler = new dirDbhandler<double>(this->dirName);
+	this->handler->read_dir();
+}
+static dirDataProvider* dirDataProvider::getInstance() {
+	if ( instanz == 0 ) {
+		instanz = new dirDataProvider();
 	}
-	int read() {
-		return 0;
-	}
-	double* getInput(int i) {
+	return instanz;
+}
+int dirDataProvider::read() {
+	return 0;
+}
+double* dirDataProvider::getInput(int i) {
 
-	}
-	double *getOutput(int i) {
+}
+double* dirDataProvider::getOutput(int i) {
 
-	}
-	int getInputLength() {
+}
+int dirDataProvider::getInputLength() {
 
-	}
-	int getOutputLength() {
+}
+int dirDataProvider::getOutputLength() {
 
-	}
-};
+}
+int dirDataProvider::getNumOfSets() {
+	return this->handler->getNumOfSets();
+}

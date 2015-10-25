@@ -54,14 +54,7 @@ public:
 		{
 			float fit = 0;		   // to hold fitness value
 			// START Code of computation of fitness of the eoforex object
-			for (int i = 0; i < this->nfile ; i++) {
-				this->data.clear();
-				for ( int j = 0; j < this->flength; j++) {
-					this->data.push_back(((float)(this->fbuf[i*this->flength + j])));
-				}
-				fit += _eo.runWithFitness(this->data);
-			}
-			_eo.myfit = fit;
+			fit = _eo.runNetwork();
 			_eo.fitness(fit);
 		}
 		this->data.clear();

@@ -9,8 +9,16 @@ class dataProvider {
 class dirDataProvider: public dataProvider {
 	private:
 		dirDbhandler* handler;
-		string dirName;
+		char* dirName;
+		static dirDataProvider* instanz;
+		dirDataProvider() { };
 	public:
-		dirDataProvider(string dirName) { }
+		static dirDataProvider* getInstance() { }
 		int read() { }
+		double* getInput(int i) { }
+		double* getOutput(int i) { }
+		int getInputLength() { }
+		int getOutputLength() { }
+		int getNumOfSets() { }
+
 };
